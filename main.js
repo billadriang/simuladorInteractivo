@@ -22,11 +22,11 @@ let pruebas = [`<h2>Por favor escribe alguna prueba, tenemos estas:<br><br></h2>
 //Funcion arrow para calcular valor
 let calcularValor = () => {
     //Prompt 1 Que valor?
-    let tst = prompt("Que valor de referencia deseas consultar?").toLowerCase();
+    let tst = prompt("Que valor de referencia deseas consultar?").toLowerCase().trim();
 
     switch (tst) {
         case "glicemia":
-            let valor = prompt("Cual es tu valor de glicemia?");
+            let valor = prompt("Cual es tu valor de glicemia?").trim();
             if (valor <= B_gli) {
                 lab.innerHTML = "Estas en hipoglicemia, el Valor de Referencia de la glicemia va de " + B_gli + " a " + T_gli + "mg/dL <br> y la tuya esta en " + valor + "mg/dL";
                 break;
@@ -41,7 +41,7 @@ let calcularValor = () => {
                 break;
             }
             case "colesterol":
-                let valorc = prompt("Cual es tu valor de Colesterol Total?");
+                let valorc = prompt("Cual es tu valor de Colesterol Total?").trim();
                 if (valorc <= B_colTotal) {
                     lab.innerHTML = "Estas en hipocolesterolemia, el Valor de Referencia del colesterol serico va de " + B_colTotal + " a " + T_colTotal + "mg/dL<br> y el tuyo esta en " + valorc + "mg/dL";
                     break;
@@ -56,7 +56,7 @@ let calcularValor = () => {
                     break;
                 }
                 case "hemoglobina":
-                    let sex = prompt("Hemoglobina en Hombre o Mujer?")
+                    let sex = prompt("Hemoglobina en Hombre o Mujer?").toLowerCase().trim();
 
                     if (sex == "hombre") {
                         let valorh = prompt("Cual es tu valor de hemoglobina?");
@@ -74,7 +74,7 @@ let calcularValor = () => {
                             break;
                         }
                     } else if (sex == "mujer") {
-                        let valorh = prompt("Cual es tu valor de hemoglobina?");
+                        let valorh = prompt("Cual es tu valor de hemoglobina?").trim();
                         if (valorh <= B_hbMujer) {
                             lab.innerHTML = "Tu hemoglobina esta baja, el Valor de Referencia de Hemoglobina en mujeres va de " + B_hbMujer + " a " + T_hbMujer + "mg/dL<br> y la tuya mi amor, esta en " + valorh + "mg/dL, esta esta muy relacionada a anemias";
                             break;
