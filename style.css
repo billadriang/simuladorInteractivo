@@ -26,5 +26,8 @@ h1{
 }
 
 #show{
-    font-size: xx-small;
+height: 200px;
+width: auto;
+overflow: scroll;
+
 }

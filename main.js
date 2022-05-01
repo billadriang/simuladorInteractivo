@@ -1,5 +1,6 @@
 class ValorReferencia {
-    constructor(valorInferior, valorSuperior, bajo, normal, alto) {
+    constructor(name,valorInferior, valorSuperior, bajo, normal, alto) {
+        this.name = name;
         this.valorInferior = valorInferior;
         this.valorSuperior = valorSuperior;
         this.bajo = bajo;
@@ -9,6 +10,7 @@ class ValorReferencia {
 }
 // let VALOR A AGREGAR = new ValorReferencia(RANGO INFERIOR, RANGO SUPERIOR, MENSAJE VALOR BAJO, MENSAJE VALOR NORMAL, MENSAJE VALOR ALTO
 let glicemia = new ValorReferencia(
+    "GLICEMIA O GLUCEMIA",
     80,
     110,
     "Estas en hipoglicemia, el Valor de Referencia de la glicemia va de  80 a 110 mg/dL",
@@ -17,6 +19,7 @@ let glicemia = new ValorReferencia(
 );
 
 let colesterol = new ValorReferencia(
+    "COLESTEROL TOTAL",
     125,
     200,
     "Estas en hipocolesterolemia, el Valor de Referencia del colesterol serico va de 125 a 200mg/dL",
@@ -25,6 +28,7 @@ let colesterol = new ValorReferencia(
 );
 
 let hemoglobinaHombre = new ValorReferencia(
+    "HEMOGLOBINA EN HOMBRES",
     13.8,
     17.2,
     "Tu hemoglobina esta baja, el Valor de Referencia de Hemoglobina en hombres va de 13.8 a 17.2mg/dL",
@@ -33,6 +37,7 @@ let hemoglobinaHombre = new ValorReferencia(
 );
 
 let hemoglobinaMujer = new ValorReferencia(
+    "HEMOGLOBINA EN MUJERES",
     12.1,
     15.1,
     "Tu hemoglobina esta baja, el Valor de Referencia de Hemoglobina en mujeres va de 12.1 a 15.1mg/dL",
@@ -62,10 +67,8 @@ let calcularValor = () => {
     let tst = prompt("Que valor de referencia deseas consultar?")
         .toLowerCase()
         .trim();
-
-
     switch (tst) {
-        case "glicemia":
+        case "glicemia":            
             let valor = prompt("Cual es tu valor de glicemia?").trim();
             if (valor <= glicemia.valorInferior) {
                 lab.innerHTML = `${glicemia.bajo}<br> y la tuya esta en ${valor}mg/dL`;
@@ -156,12 +159,15 @@ let calcularValor = () => {
     }
 };
 
+
+let mostrarTodos = () => {
 let disponibles = [glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer]
 
 disponibles.forEach((d) =>{
     let show = document.querySelector("#show")
-    show.innerHTML += `<br>`+ d.constructor.instance + JSON.stringify(d)
+    show.innerHTML += `<br><br> NOMBRE: ` +  d.name + ` de ` + d.valorInferior + ` a ` + d.valorSuperior + `mg/dL  <br> MENSAJE VALOR ALTO: ` + d.alto + ` <br>MENSAJE VALOR BAJO: ` + d.bajo + ` <br>MENSAJE VALOR NORMAL: ` + d.normal
+    // show.innerHTML += `<br>`+ JSON.stringify(d)
 })
-
+}
 
 
