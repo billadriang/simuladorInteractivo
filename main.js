@@ -58,10 +58,11 @@ let pruebas = [
 ];
 //Funcion arrow para calcular valor
 let calcularValor = () => {
-    //Prompt 1 Que valor?
+    // Prompt 1 Que valor?
     let tst = prompt("Que valor de referencia deseas consultar?")
         .toLowerCase()
         .trim();
+
 
     switch (tst) {
         case "glicemia":
@@ -154,3 +155,13 @@ let calcularValor = () => {
                         break;
     }
 };
+
+let disponibles = [glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer]
+
+disponibles.forEach((d) =>{
+    let show = document.querySelector("#show")
+    show.innerHTML += `<br>`+ d.constructor.instance + JSON.stringify(d)
+})
+
+
+
