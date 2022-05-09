@@ -61,108 +61,204 @@ let pruebas = [
     "Valores de Hemograma",
     "Y muchos mas.",
 ];
-//Funcion arrow para calcular valor
-let calcularValor = () => {
-    // Prompt 1 Que valor?
-    let tst = prompt("Que valor de referencia deseas consultar?")
-        .toLowerCase()
-        .trim();
-    switch (tst) {
-        case "glicemia":            
-            let valor = prompt("Cual es tu valor de glicemia?").trim();
-            if (valor <= glicemia.valorInferior) {
-                lab.innerHTML = `${glicemia.bajo}<br> y la tuya esta en ${valor}mg/dL`;
-                break;
-            } else if (
-                valor > glicemia.valorInferior &&
-                valor < glicemia.valorSuperior
-            ) {
-                lab.innerHTML = `${glicemia.normal}<br> y la tuya esta en ${valor}mg/dL`;
-                break;
-            } else if (valor >= glicemia.valorSuperior) {
-                lab.innerHTML = `${glicemia.alto}<br> y la tuya esta en ${valor}mg/dL<br>Atent@ a una posible diabetes, si estos valores son cronicos deberias ir a un Endocrinologo`;
-                break;
-            } else {
-                lab.innerHTML = "Por favor ingesa un numero valido";
-                break;
-            }
-            case "colesterol":
-                let valorc = prompt("Cual es tu valor de Colesterol Total?").trim();
-                if (valorc <= colesterol.valorInferior) {
-                    lab.innerHTML = `${colesterol.bajo}<br> y el tuyo esta en ${valorc}mg/dL`;
-                    break;
-                } else if (
-                    valorc > colesterol.valorInferior &&
-                    valorc < colesterol.valorSuperior
-                ) {
-                    lab.innerHTML = `${colesterol.normal}<br> y el tuyo esta en ${valorc}mg/dL`;
-                    break;
-                } else if (valorc >= colesterol.valorSuperior) {
-                    lab.innerHTML = `${colesterol.alto}<br> y el tuyo esta en ${valorc}mg/dL<br>Atent@, esto junto a obesidad abdominal aumentan los riesgos de un accidente cardiovascular`;
-                    break;
-                } else {
-                    lab.innerHTML = "Por favor ingesa un numero valido";
-                    break;
-                }
-                case "hemoglobina":
-                    let sex = prompt("Hemoglobina en Hombre o Mujer?").toLowerCase().trim();
 
-                    if (sex == "hombre") {
-                        let valorh = prompt("Cual es tu valor de hemoglobina?");
-                        if (valorh <= hemoglobinaHombre.valorInferior) {
-                            lab.innerHTML = `${hemoglobinaHombre.bajo}<br> y la tuya esta en ${valorh}mg/dL, estos valores estan muy relacionados a anemias`;
-                            break;
-                        } else if (
-                            valorh > hemoglobinaHombre.valorInferior &&
-                            valorh < hemoglobinaHombre.valorSuperior
-                        ) {
-                            lab.innerHTML = `${hemoglobinaHombre.normal}<br> la tuya esta en ${valorh}mg/dL`;
-                            break;
-                        } else if (valorh >= hemoglobinaHombre.valorSuperior) {
-                            lab.innerHTML = `${hemoglobinaHombre.alto}<br> y la tuya esta en ${valorh}mg/dL<br>Atento, este es un clasico sintoma de Policitemia vera, deberias llevarle tus resultados a un Hematologo`;
-                            break;
-                        } else {
-                            lab.innerHTML = "Por favor ingesa un numero valido";
-                            break;
-                        }
-                    } else if (sex == "mujer") {
-                        let valorh = prompt("Cual es tu valor de hemoglobina?").trim();
-                        if (valorh <= hemoglobinaMujer.valorInferior) {
-                            lab.innerHTML = `${hemoglobinaMujer.bajo}<br> y la tuya mi amor, esta en ${valorh}mg/dL, esta esta muy relacionada a anemias`;
-                            break;
-                        } else if (
-                            valorh > hemoglobinaMujer.valorInferior &&
-                            valorh < hemoglobinaMujer.valorSuperior
-                        ) {
-                            lab.innerHTML = `${hemoglobinaMujer.normal}<br> y la tuya esta en ${valorh}mg/dL`;
-                            break;
-                        } else if (valorh >= hemoglobinaMujer.valorSuperior) {
-                            lab.innerHTML = `${hemoglobinaMujer.alto}<br> y la tuya esta en ${valorh}mg/dL<br>Atenta, este es un clasico sintoma de Policitemia vera, deberias llevarle tus resultados a un Hematologo`;
-                            break;
-                        } else {
-                            lab.innerHTML = "Por favor ingesa un numero valido";
-                            break;
-                        }
-                    } else {
-                        lab.innerHTML = "Por favor escribe un valor valido en genero";
-                        break;
-                    }
-                    default:
-                        //Temporizador para refrescar
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 5000);
-                        //For loop para mostrar pruebas disponibles
-                        for (i = 0; i < pruebas.length; i = i + 1)
-                            lab.innerHTML += "<br>" + pruebas[i] + "<br>";
-                        break;
+
+
+// VARIABLES
+const VRs = [
+    glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer
+]
+
+const vrContainer = document.querySelector(".vrContainer")
+const lab = document.querySelector("#lab")
+
+
+
+
+// EVENTOS
+
+boton = document.querySelector("#boton")
+boton.addEventListener('click', () =>{
+    mostrarVRs()
+})
+
+// document.addEventListener('DOMContentLoaded', () =>{
+//     mostrarVRs()
+// })
+
+
+
+
+//FUNCIONES
+function mostrarVRs() {
+    
+
+    VRs.forEach(element => {
+        const divVR = document.createElement('div');
+        divVR.classList.add('card');
+        const nombreVr = document.createElement('h6')
+        nombreVr.innerText = element.name
+
+        const btnVR = document.createElement('button');
+        btnVR.classList.add('btn')
+        btnVR.classList.add('btn-sm')
+        btnVR.innerText = "Analizar mi valor"
+        btnVR.onclick = () => {
+            calcularValor(element.name)
+        };
+
+        divVR.appendChild(nombreVr)
+        divVR.appendChild(btnVR)
+
+        vrContainer.appendChild(divVR)
+        boton.disabled = true; 
+    });
+}
+
+
+function calcularValor(name){
+    const vrSelec = VRs.find(vr => vr.name === name)
+    const tst = vrSelec.name
+
+    switch (tst){
+        case "GLICEMIA O GLUCEMIA":
+            lab.innerText = glicemia.name + ` de ` + glicemia.valorInferior + ` a ` + glicemia.valorSuperior +`mg/dL`
+            break;
+        case "COLESTEROL TOTAL":
+            lab.innerText = colesterol.name + ` de ` + colesterol.valorInferior + ` a ` + colesterol.valorSuperior +`mg/dL`
+            break;
+        case "HEMOGLOBINA EN HOMBRES":
+            lab.innerText = hemoglobinaHombre.name + ` de ` + hemoglobinaHombre.valorInferior + ` a ` + hemoglobinaHombre.valorSuperior +`mg/dL`
+            break;
+        case "HEMOGLOBINA EN MUJERES":
+            lab.innerText = hemoglobinaMujer.name + ` de ` + hemoglobinaMujer.valorInferior + ` a ` + hemoglobinaMujer.valorSuperior +`mg/dL`
+            break;
     }
-};
+
+}
+
+// //Funcion arrow para calcular valor
+// let calcularValor = () => {
+//     // Prompt 1 Que valor?
+
+
+//     let tst = prompt("Que valor de referencia deseas consultar?")
+//         .toLowerCase()
+//         .trim();
+
+//     // sentencia.innerHTML = "Que valor de referencia deseas consultar?"
+//     // boton.addEventListener('click',()=> {
+//     //     tst = entrada.value;
+//     // })
+
+
+
+
+
+//     // let tst;
+//     // sentencia.innerHTML= "Que valor de referencia deseas consultar?"
+//     // boton.addEventListener('click',() => {
+//     //     tst = entrada.value
+//     // } )
+
+
+
+        
+//     switch (tst) {
+//         case "glicemia":            
+//             let valor = prompt("Cual es tu valor de glicemia?").trim();
+//             if (valor <= glicemia.valorInferior) {
+//                 lab.innerHTML = `${glicemia.bajo}<br> y la tuya esta en ${valor}mg/dL`;
+//                 break;
+//             } else if (
+//                 valor > glicemia.valorInferior &&
+//                 valor < glicemia.valorSuperior
+//             ) {
+//                 lab.innerHTML = `${glicemia.normal}<br> y la tuya esta en ${valor}mg/dL`;
+//                 break;
+//             } else if (valor >= glicemia.valorSuperior) {
+//                 lab.innerHTML = `${glicemia.alto}<br> y la tuya esta en ${valor}mg/dL<br>Atent@ a una posible diabetes, si estos valores son cronicos deberias ir a un Endocrinologo`;
+//                 break;
+//             } else {
+//                 lab.innerHTML = "Por favor ingesa un numero valido";
+//                 break;
+//             }
+//             case "colesterol":
+//                 let valorc = prompt("Cual es tu valor de Colesterol Total?").trim();
+//                 if (valorc <= colesterol.valorInferior) {
+//                     lab.innerHTML = `${colesterol.bajo}<br> y el tuyo esta en ${valorc}mg/dL`;
+//                     break;
+//                 } else if (
+//                     valorc > colesterol.valorInferior &&
+//                     valorc < colesterol.valorSuperior
+//                 ) {
+//                     lab.innerHTML = `${colesterol.normal}<br> y el tuyo esta en ${valorc}mg/dL`;
+//                     break;
+//                 } else if (valorc >= colesterol.valorSuperior) {
+//                     lab.innerHTML = `${colesterol.alto}<br> y el tuyo esta en ${valorc}mg/dL<br>Atent@, esto junto a obesidad abdominal aumentan los riesgos de un accidente cardiovascular`;
+//                     break;
+//                 } else {
+//                     lab.innerHTML = "Por favor ingesa un numero valido";
+//                     break;
+//                 }
+//                 case "hemoglobina":
+//                     let sex = prompt("Hemoglobina en Hombre o Mujer?").toLowerCase().trim();
+
+//                     if (sex == "hombre") {
+//                         let valorh = prompt("Cual es tu valor de hemoglobina?");
+//                         if (valorh <= hemoglobinaHombre.valorInferior) {
+//                             lab.innerHTML = `${hemoglobinaHombre.bajo}<br> y la tuya esta en ${valorh}mg/dL, estos valores estan muy relacionados a anemias`;
+//                             break;
+//                         } else if (
+//                             valorh > hemoglobinaHombre.valorInferior &&
+//                             valorh < hemoglobinaHombre.valorSuperior
+//                         ) {
+//                             lab.innerHTML = `${hemoglobinaHombre.normal}<br> la tuya esta en ${valorh}mg/dL`;
+//                             break;
+//                         } else if (valorh >= hemoglobinaHombre.valorSuperior) {
+//                             lab.innerHTML = `${hemoglobinaHombre.alto}<br> y la tuya esta en ${valorh}mg/dL<br>Atento, este es un clasico sintoma de Policitemia vera, deberias llevarle tus resultados a un Hematologo`;
+//                             break;
+//                         } else {
+//                             lab.innerHTML = "Por favor ingesa un numero valido";
+//                             break;
+//                         }
+//                     } else if (sex == "mujer") {
+//                         let valorh = prompt("Cual es tu valor de hemoglobina?").trim();
+//                         if (valorh <= hemoglobinaMujer.valorInferior) {
+//                             lab.innerHTML = `${hemoglobinaMujer.bajo}<br> y la tuya mi amor, esta en ${valorh}mg/dL, esta esta muy relacionada a anemias`;
+//                             break;
+//                         } else if (
+//                             valorh > hemoglobinaMujer.valorInferior &&
+//                             valorh < hemoglobinaMujer.valorSuperior
+//                         ) {
+//                             lab.innerHTML = `${hemoglobinaMujer.normal}<br> y la tuya esta en ${valorh}mg/dL`;
+//                             break;
+//                         } else if (valorh >= hemoglobinaMujer.valorSuperior) {
+//                             lab.innerHTML = `${hemoglobinaMujer.alto}<br> y la tuya esta en ${valorh}mg/dL<br>Atenta, este es un clasico sintoma de Policitemia vera, deberias llevarle tus resultados a un Hematologo`;
+//                             break;
+//                         } else {
+//                             lab.innerHTML = "Por favor ingesa un numero valido";
+//                             break;
+//                         }
+//                     } else {
+//                         lab.innerHTML = "Por favor escribe un valor valido en genero";
+//                         break;
+//                     }
+//                     default:
+//                         //Temporizador para refrescar
+//                         setTimeout(function () {
+//                             window.location.reload();
+//                         }, 5000);
+//                         //For loop para mostrar pruebas disponibles
+//                         for (i = 0; i < pruebas.length; i = i + 1)
+//                             lab.innerHTML += "<br>" + pruebas[i] + "<br>";
+//                         break;
+//     }
+// };
 
 
 let mostrarTodos = () => {
 let disponibles = [glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer]
-
 disponibles.forEach((d) =>{
     let show = document.querySelector("#show")
     show.innerHTML += `<br><br> NOMBRE: ` +  d.name + ` de ` + d.valorInferior + ` a ` + d.valorSuperior + `mg/dL  <br> MENSAJE VALOR ALTO: ` + d.alto + ` <br>MENSAJE VALOR BAJO: ` + d.bajo + ` <br>MENSAJE VALOR NORMAL: ` + d.normal

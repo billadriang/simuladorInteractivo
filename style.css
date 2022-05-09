@@ -12,6 +12,21 @@
 #lab{
     margin-top: 1rem;
 }
+
+
+
+.vrContainer {
+    margin-top: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.card{
+    margin-bottom: 2rem;
+    text-align: center;
+
+}
 @media only screen and (max-width: 800px) {
 
 h1{
@@ -23,6 +38,13 @@ h1{
     font-size: 1rem;
 }
 
+.vrContainer {
+    margin-top: 0.5rem;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(1,1fr);
+}
+
 }
 
 #show{
@@ -31,3 +53,4 @@ width: auto;
 overflow: scroll;
 
 }
+
