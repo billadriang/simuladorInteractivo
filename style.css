@@ -1,15 +1,16 @@
-.gaize{
+.gaize {
     text-align: center;
     padding: 1rem;
 }
+
 .bill {
-    position:absolute;
+    position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-#lab{
+#lab {
     margin-top: 1rem;
 }
 
@@ -19,38 +20,52 @@
     margin-top: 1rem;
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
+    overflow: scroll;
 }
 
-.card{
-    margin-bottom: 2rem;
+.card {
+    margin-bottom: 1px;
     text-align: center;
 
 }
+
+
+
 @media only screen and (max-width: 800px) {
 
-h1{
-    font-size: 1.2rem;
-    font-weight: bolder;
+    h1 {
+        font-size: 1.2rem;
+        font-weight: bolder;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
+
+    .vrContainer {
+        margin-top: 0.5rem;
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: repeat(1, 1fr);
+        height: 150px;
+        width: auto;
+        overflow: scroll;
+
+    }
+
+    #lab {
+        height: 20%;
+        width: auto;
+        overflow: scroll;
+    }
+
+
 }
 
-.btn{
-    font-size: 1rem;
-}
-
-.vrContainer {
-    margin-top: 0.5rem;
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: repeat(1,1fr);
-}
+#show {
+    height: 200px;
+    width: auto;
+    overflow: scroll;
 
 }
-
-#show{
-height: 200px;
-width: auto;
-overflow: scroll;
-
-}
-

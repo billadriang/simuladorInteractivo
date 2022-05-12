@@ -1,3 +1,5 @@
+
+// PLANTILLA DE VALORES DE REFERENCIA 
 class ValorReferencia {
     constructor(name, valorInferior, valorSuperior, bajo, normal, alto) {
         this.name = name;
@@ -45,52 +47,36 @@ let hemoglobinaMujer = new ValorReferencia(
     "Tu valor de hemoglobina esta por encima de los de referencia para mujeres, los cuales van de 12.1 a 15.1mg/dL"
 );
 
-//ARRAY DE VALORES PROXIMOS
-// let pruebas = [
-//     `<h2>Por favor escribe alguna prueba, tenemos estas:<br><br></h2>Glicemia`,
-//     "Colesterol",
-//     "Hemoglobina",
-//     "<br><br>Proximamente:",
-//     "Trigliceridos",
-//     "Colesterol HDL",
-//     "Colesterol LDL",
-//     "VLDL",
-//     "Hematocrito",
-//     "Contaje Globulos Rojos",
-//     "Contaje Leucocitos",
-//     "Valores de Hemograma",
-//     "Y muchos mas.",
-// ]
-
-
+let neutrofilos = new ValorReferencia(
+    "SEGMENTADOS NEUTROFILOS",
+    2000,
+    7500,
+    "Estas cursando con Neutropenia, Segmentados Neutrofilos bajos, el Valor de referencia de neutrofilos va de 2000 a 7500 celulas por mL de sangre",
+    "Tus valores de Segmentados neutrofilos se encuentran dentro de los valores normales  de 2000 a 7500 celulas por mL de sangre",
+    "Cursas con una Neutrofilia, considerable aumento de los Segmentados Neutrofilos en sangre, es normalmente causada por infecciones recientes, o inclusive enfermedades inflamatorias "
+);
 
 // VARIABLES
 const VRs = [
-    glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer
+    glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer, neutrofilos
 ]
 
 const vrContainer = document.querySelector(".vrContainer")
 const inputContainer = document.querySelector(".inputContainer")
 const lab = document.querySelector("#lab")
 
-
-
-
 // EVENTOS
-
 boton = document.querySelector("#boton")
 boton.addEventListener('click', () => {
     mostrarVRs()
 })
 
-
 //FUNCIONES
 function mostrarVRs() {
-
-
     VRs.forEach(element => {
         const divVR = document.createElement('div');
         divVR.classList.add('card');
+
         const nombreVr = document.createElement('h6')
         nombreVr.innerText = element.name
 
@@ -98,13 +84,12 @@ function mostrarVRs() {
         btnVR.classList.add('btn', 'btn-sm')
         btnVR.innerText = "Analizar mi valor"
         btnVR.onclick = () => {
-            calcularValor(element.name)
+            // LIMPIAR CONTENEDOR
+            inputContainer.replaceChildren()
+            calcularValor(element.name);
         };
-
-
         divVR.appendChild(nombreVr)
         divVR.appendChild(btnVR)
-
         vrContainer.appendChild(divVR)
         boton.disabled = true;
     });
@@ -112,22 +97,23 @@ function mostrarVRs() {
 
 function calcularValor(name) {
     const vrSelec = VRs.find(vr => vr.name === name)
-    // const tst = vrSelec.name
 
-    console.log(vrSelec)
     const div = document.createElement('div');
     div.classList.add('card', 'gaize');
 
     const mensaje = document.createElement('h6');
     mensaje.innerText = `Ingresa tu valor de ` + name.toLowerCase();
 
-
-
     const div2 = document.createElement('div');
     div2.classList.add('input-group', 'mb-3');
+
     const input = document.createElement('input');
     input.classList.add('form-control');
     input.type = "text";
+    // Agregando valor de Storage
+    // Usando el OR ||
+    input.placeholder = localStorage.getItem(vrSelec.name) || "..." ;
+
     const button = document.createElement('button');
     button.classList.add('btn', 'btn-outline-secondary');
     button.type = "button";
@@ -145,24 +131,23 @@ function calcularValor(name) {
         } else {
             lab.innerText = "Por favor ingresa un valor numerico"
         }
-        // LIMPIAR EL CONTENEDOR
-        inputContainer.replaceChildren()
+        // STORAGE
+        localStorage.setItem(vrSelec.name, valor);
     }
     div2.appendChild(input);
     div2.appendChild(button);
     div.appendChild(mensaje);
     div.appendChild(div2);
     inputContainer.appendChild(div);
-
 }
 
 
 function mostrarTodos() {
-    let disponibles = [glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer]
+    show.replaceChildren();
+    VRs.forEach((v) => {
 
+// DESTRUCTURANDO
+        const {name, valorInferior, valorSuperior, bajo, normal, alto} = v
+        show.innerHTML += ` <br><br> VALOR: ${name}, Valor inferior: ${valorInferior} Valor Superior: ${valorSuperior}<br> Mensaje valor bajo: ${bajo} <br> Mensaje Valor Normal: ${normal}<br> Mensaje Valor Alto ${alto}`
 
-    disponibles.forEach((d) => {
-        let show = document.querySelector("#show")
-        show.innerHTML += `<br><br> NOMBRE: ` + d.name + ` de ` + d.valorInferior + ` a ` + d.valorSuperior + `mg/dL  <br> MENSAJE VALOR ALTO: ` + d.alto + ` <br>MENSAJE VALOR BAJO: ` + d.bajo + ` <br>MENSAJE VALOR NORMAL: ` + d.normal
-    })
-}
+    })}
