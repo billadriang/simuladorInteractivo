@@ -8,6 +8,7 @@
     <!-- Bootswatch -->
     <link rel="stylesheet" href="../bootstrap.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Simulador Interactivo Bill Gaize</title>
 </head>
 
@@ -23,7 +24,7 @@
 
         <!-- link pagina para agregar o quitar valores -->
         <div class="d-grid gap-2 gaize">
-            <button class="btn btn-lg btn-primary" onclick="mostrarTodos()">Presioname para mostrar todos</button>
+            <button class="btn btn-lg btn-primary" id="boton2">Presioname para mostrar todos</button>
         </div>
 
         <p id="boton"></p>
@@ -33,7 +34,10 @@
             <button class="btn btn-sm" onclick="window.location.href='../index.html'">Presioname para volver</button>
         </div>
         <!-- Link al js -->
-        <script src="../main.js"></script>
+        <script type="module" src="../main.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 </body>
