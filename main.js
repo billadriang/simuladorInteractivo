@@ -10,6 +10,10 @@ const inputContainer = document.querySelector(".inputContainer");
 const lab = document.querySelector("#lab");
 const boton2 = document.querySelector("#boton2");
 const boton = document.querySelector("#boton");
+//VOZ
+let voz = new SpeechSynthesisUtterance();
+voz.lang = "es-US";
+voz.volume = 0.2;
 
 // EVENTOS
 boton.addEventListener('click', () => {
@@ -77,6 +81,8 @@ function calcularValor(name) {
         const valor = input.value;
         if (valor === "") {
             lab.innerText = "Por favor ingresa un valor";
+            voz.text = "Por favor ingresa un valor";
+            speechSynthesis.speak(voz)
             //Libreria sweetalert2
             Swal.fire({
                 icon: 'error',
@@ -84,16 +90,26 @@ function calcularValor(name) {
             })
         } else if (valor < vrSelec.valorInferior) {
             lab.innerText = vrSelec.bajo;
+            voz.text = vrSelec.bajo;
+            speechSynthesis.speak(voz);
+            
         } else if (valor > vrSelec.valorInferior && valor < vrSelec.valorSuperior) {
             lab.innerText = vrSelec.normal;
+            voz.text = vrSelec.normal;
+            speechSynthesis.speak(voz);
+
         } else if (valor > vrSelec.valorSuperior) {
             lab.innerText = vrSelec.alto;
+            voz.text = vrSelec.alto;
+            speechSynthesis.speak(voz);
         } else {
-            lab.innerText = "Por favor ingresa un valor numerico";
+            lab.innerText = "Por favor ingresa un valor numérico";
+            voz.text = "Por favor, ingresa un valor numérico";
+            speechSynthesis.speak(voz);
             //Libreria sweetalert2
             Swal.fire({
                 icon: 'error',
-                title: '😕 Porfa agrega un valor numerico!',
+                title: '😕 Porfa agrega un valor numérico!',
             })
         }
         // STORAGE

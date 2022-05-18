@@ -5,9 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA -->
+    <meta name="theme-color" content="#378dfc">
+    <link rel="manifest" href="manifest.JSON">
+    <link rel="apple-touch-icon" href="images/icons/icon-512x512.png">
+
+
     <!-- Bootswatch -->
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
+
+    <!-- toastify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Simulador Interactivo Bill Gaize</title>
 </head>
@@ -45,6 +53,15 @@
         </div>
         <!-- Link al js -->
         <script type="module" src="main.js"></script>
+
+        <!-- Link to serviceworker -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register("serviceworker.js");
+            }
+        </script>
+
+
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
