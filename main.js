@@ -88,17 +88,17 @@ function calcularValor(name) {
                 icon: 'error',
                 title: '😕 Porfa ingresa algun valor',
             })
-        } else if (valor < vrSelec.valorInferior) {
+        } else if (valor <= vrSelec.valorInferior) {
             lab.innerText = vrSelec.bajo;
             voz.text = vrSelec.bajo;
             speechSynthesis.speak(voz);
             
-        } else if (valor > vrSelec.valorInferior && valor < vrSelec.valorSuperior) {
+        } else if (valor >= vrSelec.valorInferior && valor < vrSelec.valorSuperior) {
             lab.innerText = vrSelec.normal;
             voz.text = vrSelec.normal;
             speechSynthesis.speak(voz);
 
-        } else if (valor > vrSelec.valorSuperior) {
+        } else if (valor >= vrSelec.valorSuperior) {
             lab.innerText = vrSelec.alto;
             voz.text = vrSelec.alto;
             speechSynthesis.speak(voz);
