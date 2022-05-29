@@ -146,10 +146,8 @@ function mostrarTodo() {
         .then((vspx) => {
 
             const vr = vspx.ValorReferencia[0]
-            console.log(vr)
             show.replaceChildren();
             for (let i in vr) {
-                console.log(vr[i])
                 show.innerHTML += `${vr[i].name} que va de ${vr[i].valorInferior} a ${vr[i].valorSuperior} ${vr[i].unidad}<br> Cuando esta bajo: ${vr[i].bajo} <br> Cuanto esta por encima: ${vr[i].alto}<br><br>`
             }
         });
