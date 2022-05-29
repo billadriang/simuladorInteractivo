@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- STATUS BAR TRANSPARENTE, ZOOM DESHABILITADO -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <link rel="icon" href="/images/icons/favicon.ico">
+
     <!-- PWA -->
     <meta name="theme-color" content="#378dfc">
     <link rel="manifest" href="manifest.JSON">
@@ -14,35 +19,37 @@
     <!-- SPLASH SCREEN FOR IOS -->
     <link href="splashscreens/iphone5_splash.png"
         media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/iphone6_splash.png"
         media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/iphoneplus_splash.png"
         media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/iphonex_splash.png"
         media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/iphonexr_splash.png"
         media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/iphonexsmax_splash.png"
         media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/ipad_splash.png"
         media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/ipadpro1_splash.png"
         media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/ipadpro3_splash.png"
         media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <link href="splashscreens/ipadpro2_splash.png"
         media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
+        rel="apple-touch-startup-image">
     <meta name="apple-mobile-web-app-capable" content="yes">
+
+
 
 
     <!-- Bootswatch -->
@@ -59,7 +66,7 @@
     <div class="bill">
 
 
-        <h1 class="gaize">Bienvenid@ a la herramienta de laboratorio 👨‍🔬</h1>
+        <h1 id="titulo" class="gaize">LABPal👨‍🔬 <br> Te da la Bienvenida </h1>
         <!-- Boton para ejecutar el js -->
         <div class="d-grid gap-2">
             <button class="btn btn-lg btn-primary" id="boton">Presioname para Analizar tus

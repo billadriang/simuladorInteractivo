@@ -14,8 +14,6 @@
     margin-top: 1rem;
 }
 
-
-
 .vrContainer {
     margin-top: 1rem;
     display: grid;
@@ -30,7 +28,19 @@
 
 }
 
+/* CUSTOM SCROLLBAR  */
+::-webkit-scrollbar {
+    width: 2px;
+}
 
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 1px;
+}
 
 @media only screen and (max-width: 800px) {
 
@@ -59,8 +69,6 @@
         width: auto;
         overflow: scroll;
     }
-
-
 }
 
 #show {
@@ -68,4 +76,10 @@
     width: auto;
     overflow: scroll;
 
+}
+
+@media screen and (display-mode: standalone) {
+    header {
+        height: 88px !important;
+    }
 }

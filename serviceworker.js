@@ -1,5 +1,5 @@
 const assets = ["/","index.html","main.js","style.css"]
-
+// Intento de cache
 self.addEventListener("install", event => {
     event.waitUntil(
         caches.open("assets").then( cache => {

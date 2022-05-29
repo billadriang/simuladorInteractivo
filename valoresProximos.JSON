@@ -1,0 +1,41 @@
+{
+    "ValorReferencia": [{
+        "hierro": {
+            "name": "HIERRO SERICO",
+            "valorInferior": 60,
+            "valorSuperior": 170,
+            "bajo": "Cursas con ferropenia, niveles muy bajos de hierro en sangre van usualmente asociados a anemias ferropenicas",
+            "normal": "Tus niveles de hierro en sangre estan bien, el valor de referencia va de 60 a 170mg/dL",
+            "alto": "No es comun cursar con niveles tan altos de hierro, esta asociado a envenenamiento por hierro, los valores de referencia de hierro serico van de 60 a 170mg/dL",
+            "unidad": "mg/dL"
+        },
+        "sodio": {
+            "name": "SODIO SERICO",
+            "valorInferior": 135,
+            "valorSuperior": 145,
+            "bajo": "Cursas con Hiponatrmia",
+            "normal": "Tus niveles de Sodio en sangre estan bien, el valor de referencia va de 135 a 145meq/L",
+            "alto": "Hipernatremia",
+            "unidad": "meq/L"
+        },
+        "potasio": {
+            "name": "POTASIO SERICO",
+            "valorInferior": 3.5,
+            "valorSuperior": 5,
+            "bajo": "Cursas con Hipopotasemia",
+            "normal": "Tus niveles de potasio en sangre estan bien, el valor de referencia va de 3.5 a 5meq/L",
+            "alto": "Hiperpotasemia",
+            "unidad": "meq/L"
+        },
+        "calcio": {
+            "name": "CALCIO SERICO",
+            "valorInferior": 8.5,
+            "valorSuperior": 10.5,
+            "bajo": "Cursas con Hipocalcemia",
+            "normal": "Tus niveles de Calcio en sangre estan bien, el valor de referencia va de 8.5 a 10.5meq/L",
+            "alto": "Hipercalcemia",
+            "unidad": "meq/L"
+        }
+    }
+    ]
+}

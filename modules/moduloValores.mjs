@@ -1,4 +1,4 @@
-export {glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer, neutrofilos};
+export {glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer, neutrofilos, trigliceridos};
 
 // PLANTILLA DE VALORES DE REFERENCIA 
 class ValorReferencia {
@@ -61,4 +61,14 @@ let neutrofilos = new ValorReferencia(
     "Tus valores de Segmentados neutrofilos se encuentran dentro de los valores normales  de 2000 a 7500 celulas por mL de sangre",
     "Cursas con una Neutrofilia, considerable aumento de los Segmentados Neutrofilos en sangre, es normalmente causada por infecciones recientes, o inclusive enfermedades inflamatorias ",
     "celulas/mL sangre"
+);
+
+let trigliceridos = new ValorReferencia(
+    "TRIGLICERIDOS",
+    50,
+    150,
+    "Estas cursando con Hipotrigliceridemia, niveles bastante bajos de trigliceridos en sangre los valores de referencia en Adulto se encuentran de 50  a 150mg/dL",
+    "Tus valores se encuentran dentro de los de referencia los cuales van de 50 y 150mg/dL",
+    "Te encuentras en hipertrigliceridemia, valores muy altos de trigliceridos en sangre, esto va normalmente asociado a Obesidad y enfermedades coronarias, los valores de referencia para adultos van de 50 a 150mg/dL",
+    "mg/dL"
 );

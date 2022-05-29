@@ -1,8 +1,16 @@
-import {glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer, neutrofilos} from './modules/moduloValores.mjs';
+//IMPORTANDO VALORES DEL MODULO CORREGIDO
+import {
+    glicemia,
+    colesterol,
+    hemoglobinaHombre,
+    hemoglobinaMujer,
+    neutrofilos,
+    trigliceridos
+} from './modules/moduloValores.mjs';
 
 // VARIABLES
 const VRs = [
-    glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer, neutrofilos
+    glicemia, colesterol, hemoglobinaHombre, hemoglobinaMujer, neutrofilos, trigliceridos
 ]
 
 const vrContainer = document.querySelector(".vrContainer");
@@ -10,6 +18,7 @@ const inputContainer = document.querySelector(".inputContainer");
 const lab = document.querySelector("#lab");
 const boton2 = document.querySelector("#boton2");
 const boton = document.querySelector("#boton");
+const titulo = document.querySelector("#titulo")
 //VOZ
 let voz = new SpeechSynthesisUtterance();
 voz.lang = "es-US";
@@ -20,7 +29,7 @@ boton.addEventListener('click', () => {
     mostrarVRs()
 });
 
-boton2.addEventListener('click', () =>{
+boton2.addEventListener('click', () => {
     mostrarTodo()
 });
 
@@ -38,14 +47,17 @@ function mostrarVRs() {
         btnVR.innerText = "Analizar mi valor"
         btnVR.onclick = () => {
             // LIMPIAR CONTENEDOR
-            inputContainer.replaceChildren()
+            inputContainer.replaceChildren();
+
+            //Eliminar titulo
+            titulo.innerText = "";
+
             calcularValor(element.name);
             // Libreria Tostify
             Toastify({
                 text: ` va de ${element.valorInferior} a ${element.valorSuperior} ${element.unidad}`,
                 duration: 4000
-            }
-            ).showToast();
+            }).showToast();
         };
         divVR.appendChild(nombreVr)
         divVR.appendChild(btnVR)
@@ -71,7 +83,7 @@ function calcularValor(name) {
     input.type = "text";
     // Agregando valor de Storage
     // Usando el OR ||
-    input.placeholder = localStorage.getItem(vrSelec.name) || "..." ;
+    input.placeholder = localStorage.getItem(vrSelec.name) || "...";
 
     const button = document.createElement('button');
     button.classList.add('btn', 'btn-outline-secondary');
@@ -92,7 +104,7 @@ function calcularValor(name) {
             lab.innerText = vrSelec.bajo;
             voz.text = vrSelec.bajo;
             speechSynthesis.speak(voz);
-            
+
         } else if (valor >= vrSelec.valorInferior && valor < vrSelec.valorSuperior) {
             lab.innerText = vrSelec.normal;
             voz.text = vrSelec.normal;
@@ -126,13 +138,20 @@ function calcularValor(name) {
 function mostrarTodo() {
     // Toastify
     Toastify({
-        text: " Aqui estan todos los VRs 👨🏻‍💻",
-        },).showToast();
-    show.replaceChildren();
-    VRs.forEach((v) => {
+        text: " Estos son los valores proximos a agregar 👨🏻‍💻",
+    }, ).showToast();
+    // FETCH JSON PARA VALORES PROXIMOS A AGREGAR 
+    fetch('/valoresProximos.JSON')
+        .then((res) => res.json())
+        .then((vspx) => {
 
-// DESTRUCTURANDO
-        const {name, valorInferior, valorSuperior, bajo, normal, alto} = v
-        show.innerHTML += ` <br><br> VALOR: ${name}, Valor inferior: ${valorInferior} Valor Superior: ${valorSuperior}<br> Mensaje valor bajo: ${bajo} <br> Mensaje Valor Normal: ${normal}<br> Mensaje Valor Alto ${alto}`
-    })};
+            const vr = vspx.ValorReferencia[0]
+            console.log(vr)
+            show.replaceChildren();
+            for (let i in vr) {
+                console.log(vr[i])
+                show.innerHTML += `${vr[i].name} que va de ${vr[i].valorInferior} a ${vr[i].valorSuperior} ${vr[i].unidad}<br> Cuando esta bajo: ${vr[i].bajo} <br> Cuanto esta por encima: ${vr[i].alto}<br><br>`
+            }
+        });
 
+}
